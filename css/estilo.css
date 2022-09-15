@@ -167,7 +167,7 @@ footer{
 }
 
 
-@media screen and (max-width:1025px){
+@media screen and (max-width:600px){
     .contenedor{
    
     grid-template-columns: repeat(2, 1fr);
