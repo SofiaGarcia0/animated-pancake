@@ -80,13 +80,7 @@ body {
    
    
 } 
-@keyframes aparecer {
-    0%{
-        opacity: 0;
-    }
-    100%{
-        opacity: 1;
-    } }
+
 
 
 
@@ -113,6 +107,13 @@ main{
     animation-iteration-count: infinite;
 }
 
+@keyframes aparecer {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    } }
 .video{
     display: flex;
     justify-content: center;
