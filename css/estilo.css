@@ -13,9 +13,9 @@ body {
 }
 
 .contenedor{
-    padding: 20px;
-	margin: 20px auto;
-	width: 90%;
+    padding:0px ;
+	margin:0px;
+	width: 100%;
 	display: grid;
 	gap: 1.6rem auto;
     grid-template-columns: repeat(2, 1fr);
@@ -155,10 +155,26 @@ footer{
     grid-area: footer;
     display: flex;
     justify-content: space-between;
-    text-align: center;
-    
-}
+    background-color: #000000;
+   }
 
+ .footer nav ul{ 
+     list-style: none;
+     text-align: left;
+     justify-content: left;
+     font-family: 'Roboto Condensed', sans-serif;
+ }
+ .footer nav li{
+    text-decoration: none;
+    color: white;
+    display: block;
+   }
+   h5{
+    color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+
+   }
+  
 
 
 @media screen and (max-width:1025px){
