@@ -1,0 +1,411 @@
+﻿$(document).ready(function () {
+    var divProductRatingContainer = $('#opiniao_de_usuario').text();
+
+    if (divProductRatingContainer != undefined) {
+        var productId = $('.product-user-review-product-id').val();
+        var productLinkId = $('.product-user-review-product-linkid').val();
+        var categoryId = $('.product-user-review-category-id').val();
+        var qtdReviewsToBeShown = $('.product-user-review-qtdReviewsToBeShown').val();
+
+        var dataToPost = { productId: productId,
+            categoryId: categoryId,
+            productLinkId: productLinkId
+        };
+
+        if (qtdReviewsToBeShown != null) {
+            dataToPost.qtdReviewsToBeShown = qtdReviewsToBeShown;
+        }
+
+        var url = '/userreview'
+
+        userReviewAjaxRequest('POST', url, dataToPost, '#opiniao_de_usuario', '');
+    };
+});
+
+function setSpanRatingTopEvaluation() {
+    var strClass = $('#spnRatingProdutoBottom').attr('class');
+    $('#spnRatingProdutoTop').attr('class', strClass);
+}
+
+function doPostEvaluation(rating, userInterest) {
+    this.doPostEvaluation(rating, userInterest, false);
+}
+
+function doPostEvaluation(rating, userInterest, isQuery) {
+    var productId = $('.product-user-review-product-id').val();
+    var categoryId = $('.product-user-review-category-id').val();
+    var productLinkId = $('.product-user-review-product-linkid').val();
+    var qtdReviewsToBeShown = $('.product-user-review-qtdReviewsToBeShown').val();
+    var comment = ($('textarea[id=productRatingComment]').length == 0 ? null : $('textarea[id=productRatingComment]').val());
+    var title = ($('input[id=productRatingCommentTitle]').length == 0 ? null : $('input[id=productRatingCommentTitle]').val());
+    var userInterest = ($('input:radio[id=rdoInteresse]:checked').length == 0 ? null : $('input:radio[id=rdoInteresse]:checked').val());
+    var allowShowUserEmail = ($('input[id=productRatingAllowShowUserEmail]:checked').length != 0 ? 'true' : 'false');
+
+    var dataToPost = { productId: productId,
+        categoryId: categoryId,
+        productLinkId: productLinkId
+    };
+
+    if (rating != null) {
+        dataToPost.ratingValue = rating;
+    }
+
+    if (userInterest != null) {
+        dataToPost.userInterest = userInterest;
+    }
+
+    if (qtdReviewsToBeShown != null) {
+        dataToPost.qtdReviewsToBeShown = qtdReviewsToBeShown;
+    }
+
+    if (isQuery != null) {
+        dataToPost.isQuery = isQuery;
+    }
+
+    var url = '/userreview'
+    userReviewAjaxRequest('POST', url, dataToPost, '#opiniao_de_usuario', '');
+}
+
+function Evaluation(rating, userInterest) {
+    var productId = $('.product-user-review-product-id').val();
+    var categoryId = $('.product-user-review-category-id').val();
+    var currentPage = parseInt($('input[id=userCommentCurrentPage]').val(), 10);
+    var tituloPagina = $('input[id=userCommentTitle]').val();
+
+    var qtdReviewsToBeShown = $('.product-user-review-qtdReviewsToBeShown').val();
+    var comment = ($('textarea[id=productRatingComment]').length == 0 ? null : $('textarea[id=productRatingComment]').val());
+    var title = ($('input[id=productRatingCommentTitle]').length == 0 ? null : $('input[id=productRatingCommentTitle]').val());
+    var userInterest = ($('input:radio[id=rdoInteresse]:checked').length == 0 ? null : $('input:radio[id=rdoInteresse]:checked').val());
+    var allowShowUserEmail = ($('input[id=productRatingAllowShowUserEmail]:checked').length != 0 ? 'true' : 'false');
+
+    var url = "/ViewPagedUserComments?productId=" + productId + "&PaginaAtual=" + currentPage ;
+    tb_show (tituloPagina, url, false);
+}
+
+
+function showAllComents() {
+    var productId = $('.product-user-review-product-id').val();
+    var dataToPost;
+
+    if ($('userReviewAllComments>#currentPage') == null) {
+        dataToPost = { productId: productId, currentPage: 1 }
+    }
+    else {
+        dataToPost = { productId: productId, currentPage: $('userReviewAllComments>#currentPage').text() };
+    }
+
+    var url = '/ViewPagedUserComments'
+    userReviewAjaxRequest('POST', url, dataToPost, '#userReviewAllComments', '');
+}
+
+function showPublishUserReview(userId, productId, categoryId) {
+    var dataToPost = {
+        productId: productId,
+        userId: userId,
+        categoryId: categoryId
+    };
+
+    var url = '/publishuserreviewcomment'
+
+    userReviewAjaxRequest('POST', url, dataToPost, '#publishUserReview', '');
+}
+
+function doPostRelevance(reviewId, isRelevant, viewPart, target) {
+    this.doPostRelevance(reviewId, isRelevant, viewPart, target, null);
+}
+
+function doPostRelevance(reviewId, isRelevant, viewPart, target, source) {
+    var productId = $('.product-user-review-product-id').val();
+    var qtdReviewsToBeShown = $('.product-user-review-qtdReviewsToBeShown').val();
+    var currentPage = parseInt($('input[id=userCommentCurrentPage]').val(), 10);
+
+    var comment = ($('textarea[id=productRatingComment]').length == 0 ? null : $('textarea[id=productRatingComment]').val());
+    var title = ($('input[id=productRatingCommentTitle]').length == 0 ? null : $('input[id=productRatingCommentTitle]').val());
+    var userInterest = ($('input:radio[id=rdoInteresse]:checked').length == 0 ? null : $('input:radio[id=rdoInteresse]:checked').val());
+    var allowShowUserEmail = ($('input[id=productRatingAllowShowUserEmail]:checked').length != 0 ? 'true' : 'false');
+
+    var dataToPost = {
+        ProductId: productId,
+        PaginaAtual: currentPage,
+        TamPagina: 5,
+        SortOrder: null,
+        isRelevant: isRelevant,
+        reviewId: reviewId,
+        qtdReviewsToBeShown: qtdReviewsToBeShown,
+        source: source,
+        currentPage: 1
+    };
+    var url = viewPart;
+    userReviewAjaxRequest('POST', url, dataToPost, target, '');
+}
+
+function Relevance(reviewId, isRelevant, viewPart, target, source, id) {
+    var productId = ($('.product-user-review-product-id').length == 0 ? id : $('.product-user-review-product-id').val()); 
+    var qtdReviewsToBeShown = $('.product-user-review-qtdReviewsToBeShown').val();
+    var currentPage = parseInt($('input[id=userCommentCurrentPage]').val(), 10);
+
+    var comment = ($('textarea[id=productRatingComment]').length == 0 ? null : $('textarea[id=productRatingComment]').val());
+    var title = ($('input[id=productRatingCommentTitle]').length == 0 ? null : $('input[id=productRatingCommentTitle]').val());
+    var userInterest = ($('input:radio[id=rdoInteresse]:checked').length == 0 ? null : $('input:radio[id=rdoInteresse]:checked').val());
+    var allowShowUserEmail = ($('input[id=productRatingAllowShowUserEmail]:checked').length != 0 ? 'true' : 'false');
+
+    var tituloPagina = $('input[id=userCommentTitle]').val();
+
+    var url = viewPart + "/" + reviewId + "/" + isRelevant + "/" + source + "/" + currentPage + "/" + productId + "/?";
+    
+    tb_show(tituloPagina, url, false);
+}
+
+
+function doReSortShowAllComments(selectObject) {
+    var productId = $('.product-user-review-product-id').val();
+    var currentPage = parseInt($('input[id=userCommentCurrentPage]').val(), 10);
+
+    var comment = ($('textarea[id=productRatingComment]').length == 0 ? null : $('textarea[id=productRatingComment]').val());
+    var title = ($('input[id=productRatingCommentTitle]').length == 0 ? null : $('input[id=productRatingCommentTitle]').val());
+    var userInterest = ($('input:radio[id=rdoInteresse]:checked').length == 0 ? null : $('input:radio[id=rdoInteresse]:checked').val());
+    var allowShowUserEmail = ($('input[id=productRatingAllowShowUserEmail]:checked').length != 0 ? 'true' : 'false');
+
+    var dataToPost = {
+        ProductId: productId,
+        PaginaAtual: currentPage,
+        TamPagina: 5,
+        SortOrder: $(selectObject).attr("selectedIndex")
+    };
+
+    var url = '/ViewPagedUserComments'
+    userReviewAjaxRequest('POST', url, dataToPost, '#userReviewAllComments', '');
+}
+
+function ReviewSortOrder(selectObject, idProduto) {
+    var productId = ($('.product-user-review-product-id').length == 0 ? idProduto : $('.product-user-review-product-id').val()); 
+    var currentPage = parseInt($('input[id=userCommentCurrentPage]').val(), 10);
+    var sortOrder = $(selectObject).attr("selectedIndex");
+    var tituloPagina = $('input[id=userCommentTitle]').val();
+
+    var url = "/ViewPagedUserComments?ProductId=" + productId + "&PaginaAtual=" + currentPage + "&SortOrder=" + sortOrder;
+
+    tb_show(tituloPagina, url, false);
+}
+
+function Recarregar(currentPage, tituloPagina, id) {
+    var productId = ($('.product-user-review-product-id').length == 0 ? id : $('.product-user-review-product-id').val()); 
+    var currentPage = currentPage;
+    var sortOrder = 0;
+
+    var url = "/ViewPagedUserComments?ProductId=" + productId + "&PaginaAtual=" + currentPage + "&SortOrder=" + sortOrder;
+
+    tb_show(tituloPagina, url, false);
+}
+
+
+function doPostPublish(userId, productId, categoryId) {
+    var comment = ($('textarea[id=txtTextoResenha]').length == 0 ? null : $('textarea[id=txtTextoResenha]').val());
+    var title = ($('input[id=txtTituloResenha]').length == 0 ? null : $('input[id=txtTituloResenha]').val());
+
+    if (comment == null ||
+        comment == '' ||
+        title == null ||
+        title == '') {
+        alert('É necessário preencher o título e sua opinião');
+        return;
+    }
+
+    var allowShowUserEmail = ($('input[id=chkShowUserEmail]:checked').length != 0 ? 'true' : 'false');
+
+    var rating = '<Score>';
+
+    var nIndex = 0;
+
+    while ($('#hdnRating' + nIndex).length > 0) {
+        if ($('#hdnRating' + nIndex).val() == "" ||
+            $('#hdnEvaluationId' + nIndex).val() == "") {
+            nIndex++;
+            continue;
+        }
+
+        rating += '<EvaluationRating>' +
+                  '  <EvaluationId>' + $('#hdnEvaluationId' + nIndex).val() + '</EvaluationId>' +
+                  '  <Rating>' + $('#hdnRating' + nIndex).val() + '</Rating>' +
+                  '</EvaluationRating>';
+        nIndex++;
+    }
+
+    rating += '</Score>';
+
+    var dataToPost = {
+        userId: userId,
+        productId: productId,
+        title: title,
+        comment: comment,
+        allowShowUserEmail: allowShowUserEmail,
+        ratingValue: encodeURI(rating),
+        save: 'true',
+        categoryId: categoryId
+    };
+
+    var url = '/publishuserreviewcomment'
+    userReviewAjaxRequest('POST', url, dataToPost, '', '');
+
+    $('#publishUserReview').html($('#publishedReviewMessage').html());
+}
+
+function firstPage() {
+    var productId = $('.product-user-review-product-id').val();
+    var selectedIndex = $('#cmbReviewSortOrderHeader').attr("selectedIndex");
+    var dataToPost;
+
+    dataToPost = {
+        productId: productId,
+        PaginaAtual: 1,
+        SortOrder: selectedIndex
+    }
+
+    var url = '/ViewPagedUserComments'
+
+    userReviewAjaxRequest('POST', url, dataToPost, '#userReviewAllComments', '');
+}
+
+function previousPage() {
+    var pagina = parseInt($('#userCommentCurrentPage').val(), 10);
+    var productId = $('.product-user-review-product-id').val();
+    var selectedIndex = $('#cmbReviewSortOrderHeader').attr("selectedIndex");
+    var dataToPost;
+
+    if ($('.product-userReview-AllComments-paginacao>#currentPage') != null)
+        dataToPost = {
+            productId: productId,
+            PaginaAtual: (pagina - 1),
+            SortOrder: selectedIndex
+        }
+
+    var url = '/ViewPagedUserComments'
+
+    userReviewAjaxRequest('POST', url, dataToPost, '#userReviewAllComments', '');
+}
+
+function nextPage() {
+    var pagina = parseInt($('#userCommentCurrentPage').val(), 10);
+    var productId = $('.product-user-review-product-id').val();
+    var selectedIndex = $('#cmbReviewSortOrderHeader').attr("selectedIndex");
+    var dataToPost;
+
+    if ($('.product-userReview-AllComments-paginacao>#currentPage') != null)
+        dataToPost = {
+            productId: productId,
+            PaginaAtual: (pagina + 1),
+            SortOrder: selectedIndex
+        }
+
+    var url = '/ViewPagedUserComments'
+
+    userReviewAjaxRequest('POST', url, dataToPost, '#userReviewAllComments', '');
+}
+
+function lastPage() {
+    var pagina = parseInt($('#userCommentTotalPages').val(), 10);
+    var productId = $('.product-user-review-product-id').val();
+    var selectedIndex = $('#cmbReviewSortOrderHeader').attr("selectedIndex");
+    var dataToPost;
+
+    if ($('.product-userReview-AllComments-paginacao>#totalPages') != null)
+        dataToPost = {
+            productId: productId,
+            PaginaAtual: pagina,
+            SortOrder: selectedIndex
+        }
+
+    var url = '/ViewPagedUserComments'
+
+    userReviewAjaxRequest('POST', url, dataToPost, '#userReviewAllComments', '');
+}
+
+function userReviewHasApplicationException(dataResult) {
+    var re = /\<applicationExceptionObject\>(.*?)\<\/applicationExceptionObject\>/i;
+    var returnMessage = re.exec(dataResult);
+
+    if (returnMessage != null && returnMessage != 'undefined' && returnMessage != '' && returnMessage.length > 0) {
+        if (returnMessage[1] != 'undefined' && returnMessage[1] != '') {
+            return returnMessage[1];
+        }
+    } else {
+        return '';
+    }
+}
+
+function userReviewAjaxRequest(method, url, postData, target, callback) {
+    //alert($(target).text());
+    $.ajax({
+
+        type: method,
+        url: url,
+        data: postData,
+        success: function (dataResult) {
+
+            if (target != null && target != '') {
+                //$('.product-userReview').html('');
+                var error = userReviewHasApplicationException(dataResult)
+                if (error != '') {
+                    $('.product-userReview-userRate-message').html(error);
+                } else {
+                    //alert(dataResult);
+                    $(target).html(dataResult);
+                }
+            }
+            if (callback != null && callback != '') callback();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            userReviewProductMakeBackButtomEvent(target);
+        }
+    });
+}
+
+function userReviewProductMakeBackButtomEvent(target) {
+    $(target).html(tagProductMakeErrorMessage());
+    $('.btn-thickbox').click(function () {
+        $(target).replaceWith(tagOriginalHtml);
+        tagProductOnButtomOkClick();
+    })
+}
+
+function lnkPublishRatingStarOnMouseOut(nIndex) {
+    this.setRatingStar($('#hdnRating' + nIndex).val(), 'rtAvaliacao_Star_Publish_' + nIndex);
+}
+
+function lnkRatingStarOnMouseOut() {
+    this.setRatingStar($('#rtAvaliacao_SavedRate').val(), 'rtAvaliacao_Star_');
+}
+
+function setRatingStar(nScore, strObjName) {
+    for (var i = 1; i <= 5; i++) {
+        var strObjNameAux = strObjName + i;
+
+        var nClassEmptyStarIndex = $('#' + strObjNameAux).attr('class').lastIndexOf('emptyRatingStar');
+        var nClassFilledRatingStarIndex = $('#' + strObjNameAux).attr('class').lastIndexOf('filledRatingStar');
+
+        if (nClassFilledRatingStarIndex < 0 &&
+            nClassEmptyStarIndex >= 0 &&
+            i <= nScore) {
+            $('#' + strObjNameAux).removeClass('emptyRatingStar').addClass('filledRatingStar');
+            continue;
+        }
+
+        if (nClassFilledRatingStarIndex >= 0 &&
+            nClassEmptyStarIndex < 0 &&
+            i > nScore) {
+            $('#' + strObjNameAux).removeClass('filledRatingStar').addClass('emptyRatingStar');
+        }
+    }
+}
+
+function ratingStarOnMouseOver(objMouseOver, indexToSkip) {
+    var objId = $(objMouseOver).attr('id');
+    var nIndexAux = objId.lastIndexOf('_') + indexToSkip;
+    var objName = objId.substring(0, nIndexAux);
+    var notaProduto = objId.substring(nIndexAux);
+
+    this.setRatingStar(notaProduto, objName);
+
+    $('#rtAvaliacao_A').attr('title', notaProduto);
+    $('#rtAvaliacao_RatingExtender_ClientState').val(notaProduto);
+}
