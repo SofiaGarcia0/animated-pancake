@@ -35,7 +35,10 @@ body {
   
 
 }
-
+.banners{
+    display: block;
+    margin: auto;
+}
 .header nav ul {
     list-style: none;
     display: flex;
@@ -112,8 +115,8 @@ main{
     animation-duration: 2s;
     animation-name: aparecer;
     animation-iteration-count: infinite;
-    padding: 40px;
-    margin: 40px;
+    padding: 10px;
+    margin: 10px;
 }
 @keyframes aparecer {
     0%{
@@ -124,9 +127,9 @@ main{
     } }
 h4{
     text-align: center;
-    font-family: 'Syncopate', sans-serif;
-    color: rgb(119, 182, 168);
-    font-size: medium;
+    font-size: small;
+    color: rgb(0, 0, 0);
+   
     font-weight: bold;
  
 
@@ -135,7 +138,7 @@ h4{
     text-align: center;
     font-family: 'Roboto Condensed', sans-serif;
     font-size: large;
-    padding: 10px;
+  
     margin: auto;
     font-weight: bold;
 
