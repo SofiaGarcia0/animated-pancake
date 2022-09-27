@@ -1,0 +1,35 @@
+
+body {  
+    background-color: white;
+    
+    background-size: cover;
+    font-family: 'Tajawal', sans-serif;
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+   
+    text-rendering: optimizeLegibility;
+}
+
+
+.contenedor{
+    padding:0px ;
+	margin:0px;
+	width: 100%;
+	display: grid;
+	gap: 1.6rem auto;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3,auto);
+    grid-template-areas:
+    "header header"
+    "main main"
+    "footer footer";
+   
+}
+
+
+
+
+@import "header";
+@import "main";
+@import "footer";
