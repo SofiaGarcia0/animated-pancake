@@ -1,52 +1,19 @@
 footer{
+
+   
+
     padding: 1.5rem;
     grid-area: footer;
     display: flex;
     justify-content: space-between;
     background-color: #000000;
-    
+
 
     h5{
-        color: white;
+        color: rgb(255, 255, 255);
         font-family: 'Roboto Condensed', sans-serif;
-        
-       
-       }
-       
-    .ul{ 
-        list-style: none;
-     text-align: left;
-     justify-content: left;
-     font-family: 'Roboto Condensed', sans-serif;
+    }
+
     
-
-     li{
-        text-decoration: none;
-        color: white;
-        display: block;
-
-     }
-    }
-     
-   }
-
-
-
-
- 
-  
-
-@media screen and (max-width:1200px){
-    .contenedor{
    
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3,auto);
-    grid-template-areas:
-    "header header"
-    "main main"
-    "footer footer";
-      
-    }
-}
-
-
+ }
