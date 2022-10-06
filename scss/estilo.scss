@@ -1,13 +1,27 @@
-$azul: #0d6efd;
-$azuldos: #2f82fe;
-$azultres: #5197ff;
 
-@mixin section  ($fondo) {
-    &__titulo{
-        text-align: center;
-        background-color: $fondo;
+@mixin promociones_sections {
+    padding: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50px;
+    padding: 15px;
+    margin: 15px;
+    display: inline-block;
+    justify-items: center;
+
+    &promociones_1 {
+            border-radius: 50px;
+            padding: 15px;
+            margin: 15px;
+            display: inline-block;
+            justify-items: center;
+            margin-left: auto;
+            margin-right: auto;
+
     }
+    
 }
+
 
 
 
@@ -16,14 +30,17 @@ body {
     background-color: white;
     width: 100%;
     height: 100%;
-    display: grid;
-    place-items: center;
+   
     font-family: 'Tajawal', sans-serif;
     box-sizing: border-box;
     text-rendering: optimizeLegibility;
+    box-sizing: border-box;
 }
 
-
+#divNovedades{
+    align-items: center;
+    align-content: center;
+}
 
 .contenedor{
     padding:0px ;
@@ -47,7 +64,7 @@ body {
     align-items: center;
     
     h1{
-      text-align: left;
+      text-align: center;
       font-family: 'Syncopate', sans-serif;
       margin: 10px;
       padding: 10px;
@@ -83,15 +100,7 @@ body {
           }
       }
      
-    .bancos_columna img{
-      border-radius: 100px;
-      background-color: rgb(100, 201, 255);
-      padding: 3px;
-      margin: 100px;
-      width: 100px;
-      justify-content: space-between;
-      justify-items: center;
-    }
+    
 
 
     }
@@ -131,21 +140,7 @@ main{
                 opacity: 1;
             } }
     }
-    .promociones_g{
-        padding: 40px;
-        margin-left: auto;
-        margin-right: auto;
-
-           .promociones_c img{
-            border-radius: 100px;
-            color: bisque;
-            padding: 15px;
-            margin: 15px;
-            display: inline-block;
-            justify-items: center;
-               
-            }
-    }  
+    
     
     h3{
         text-align: center;
@@ -248,27 +243,52 @@ footer{
     justify-content: space-between;
     background-color: #000000;
 
-    footer ul {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        color:#fbfbfb;
-        font-family: 'Baloo 2', cursive;
         
-     }
+         ul {
+           list-style-type: none;
+           margin: 0;
+           padding: 0;
+           width: 300px;
+           background-color: black;
+
+           li a {
+            display: block;
+            color: rgb(255, 255, 255);
+            padding: 8px 16px;
+            text-decoration: none;
+          }
+         
+          /* color change on hover */
+          li a:hover {
+           
+            color: rgb(161, 227, 253);
+          }
+         }
+       
 
     }
  
 
 
-  
+  .main{
+    .promociones_sections{
+        @include promociones_1
+    }
+
+    .promociones_2{
+        @include promociones_1
+    }
+    .promociones_3{
+        @include promociones_1
+    }
+}
 
 
 
 
 
 @media screen and (max-width:1200px){
-    .contenedor{
+    .contenedor {
    
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3,auto);
@@ -280,4 +300,7 @@ footer{
     }
 }
 
+
+
+    
 

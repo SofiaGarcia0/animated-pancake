@@ -2,11 +2,19 @@ body {
   background-color: white;
   width: 100%;
   height: 100%;
-  display: grid;
-  place-items: center;
   font-family: "Tajawal", sans-serif;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   text-rendering: optimizeLegibility;
+  box-sizing: border-box;
+}
+
+#divNovedades {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
 
 .contenedor {
@@ -24,10 +32,12 @@ body {
   grid-area: header;
   padding: 1.2rem;
   text-align: left;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .header h1 {
-  text-align: left;
+  text-align: center;
   font-family: "Syncopate", sans-serif;
   margin: 10px;
   padding: 10px;
@@ -35,13 +45,20 @@ body {
 }
 .header ul {
   list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   text-align: center;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   background-color: #000000;
   font-family: "Roboto Condensed", sans-serif;
   font-size: large;
-  flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 .header ul a {
   text-decoration: none;
@@ -55,21 +72,17 @@ body {
   color: #ffffff;
   font-weight: bold;
 }
-.header .bancos_columna img {
-  border-radius: 100px;
-  background-color: rgb(100, 201, 255);
-  padding: 3px;
-  margin: 100px;
-  width: 100px;
-  justify-content: space-between;
-  justify-items: center;
-}
 
 main {
   padding: 1.5rem;
   grid-area: main;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 main h2 {
   text-align: center;
@@ -108,19 +121,6 @@ main h2 {
     opacity: 1;
   }
 }
-main .promociones_g {
-  padding: 40px;
-  margin-left: auto;
-  margin-right: auto;
-}
-main .promociones_g .promociones_c img {
-  border-radius: 100px;
-  color: bisque;
-  padding: 15px;
-  margin: 15px;
-  display: inline-block;
-  justify-items: center;
-}
 main h3 {
   text-align: center;
   font-family: "Baloo 2", cursive;
@@ -139,18 +139,28 @@ main main.img {
   margin: 20px;
 }
 main .imgycards {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding: 20px;
   margin: 0px;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 main .video {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding: 30px;
   margin: 10px;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 main .video .pvideo {
   width: 700px;
@@ -166,27 +176,44 @@ main .video .pvideo {
   margin: 10px auto;
 }
 main .imgycards2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding: 20px;
   margin: 0px;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 main #contentCard {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding: 40px;
 }
 main .recomendados {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding: 20px;
   margin-left: auto;
   margin-right: auto;
   display: inline-block;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 main .container {
   max-width: 970px;
@@ -203,16 +230,67 @@ main .container .pimg {
 footer {
   padding: 1.5rem;
   grid-area: footer;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   background-color: #000000;
 }
-footer footer ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  color: #fbfbfb;
-  font-family: "Baloo 2", cursive;
+footer ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 300px;
+  background-color: black;
+  /* color change on hover */
+}
+footer ul li a {
+  display: block;
+  color: rgb(255, 255, 255);
+  padding: 8px 16px;
+  text-decoration: none;
+}
+footer ul li a:hover {
+  color: rgb(161, 227, 253);
+}
+
+.main .promociones_1 {
+  padding: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.main .promociones_1promociones_1 {
+  border-radius: 50px;
+  padding: 15px;
+  margin: 15px;
+  display: inline-block;
+  justify-items: center;
+}
+.main .promociones_2 {
+  padding: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.main .promociones_2promociones_1 {
+  border-radius: 50px;
+  padding: 15px;
+  margin: 15px;
+  display: inline-block;
+  justify-items: center;
+}
+.main .promociones_3 {
+  padding: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.main .promociones_3promociones_1 {
+  border-radius: 50px;
+  padding: 15px;
+  margin: 15px;
+  display: inline-block;
+  justify-items: center;
 }
 
 @media screen and (max-width: 1200px) {
