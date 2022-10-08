@@ -84,11 +84,16 @@ main {
       -ms-flex-direction: column;
           flex-direction: column;
 }
-main h2 {
+main h4{
   text-align: center;
   font-family: "Baloo 2", cursive;
-  color: #1D5192;
-  font-size: bold;
+
+}
+main h2 {
+  text-align: center;
+  font-family: "Syncopate", sans-serif;
+  color:  #f4226f;
+  font-weight: 100;
   padding: 10px;
   margin: 10px;
   margin-left: auto;
@@ -120,12 +125,27 @@ main h2 {
   100% {
     opacity: 1;
   }
+
+}
+
+main .promociones_g {
+  padding: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+main .promociones_g .promociones_c img {
+  border-radius: 100px;
+  color: bisque;
+  padding: 15px;
+  margin: 15px;
+  display: inline-block;
+  justify-items: center;
 }
 main h3 {
   text-align: center;
   font-family: "Baloo 2", cursive;
   color: #ffffff;
-  background-color: #5676b4;
+  background-color:#ff3575;
   padding: 10px;
   margin: 10px;
   margin-left: auto;
@@ -161,6 +181,7 @@ main .video {
   margin: 10px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  text-align: center;
 }
 main .video .pvideo {
   width: 700px;
@@ -174,6 +195,7 @@ main .video .pvideo {
   font-weight: 400;
   line-height: 24px;
   margin: 10px auto;
+  text-align: center;
 }
 main .imgycards2 {
   display: -webkit-box;
@@ -236,14 +258,14 @@ footer {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  background-color: #000000;
+  background-color:  #000000;
 }
 footer ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   width: 300px;
-  background-color: black;
+  
   /* color change on hover */
 }
 footer ul li a {
@@ -268,30 +290,7 @@ footer ul li a:hover {
   display: inline-block;
   justify-items: center;
 }
-.main .promociones_2 {
-  padding: 40px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.main .promociones_2promociones_1 {
-  border-radius: 50px;
-  padding: 15px;
-  margin: 15px;
-  display: inline-block;
-  justify-items: center;
-}
-.main .promociones_3 {
-  padding: 40px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.main .promociones_3promociones_1 {
-  border-radius: 50px;
-  padding: 15px;
-  margin: 15px;
-  display: inline-block;
-  justify-items: center;
-}
+
 
 @media screen and (max-width: 1200px) {
   .contenedor {
